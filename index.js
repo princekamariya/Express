@@ -8,7 +8,7 @@ const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(router);
+app.use("/api/v1", router);
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname + "/index.html"));
