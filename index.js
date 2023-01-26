@@ -1,18 +1,18 @@
 const express = require("express");
+const path = require("path");
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 3000;
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hello World</h1>");
+  res.sendFile(path.join(__dirname + "/index.html"));
 });
 
-app.get("/about", (req, res) => {
-  res.send("<h1>ABOUT</h1>");
-});
-
-app.get("/contact", (req, res) => {
-  res.send("<h1>CONTACT</h1>");
+app.post("/api/v1/register", (req, res) => {
+  res.send(`<h1>Hello ${req.body.name} and your email is ${req.body.email}`);
+  console.log(req.body);
 });
 
 app.listen(port, () => {
